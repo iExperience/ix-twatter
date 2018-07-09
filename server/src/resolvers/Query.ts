@@ -1,8 +1,14 @@
-import { getUserId, Context } from '../utils'
+import { Context } from "../utils"
 
-export const Query = {
-  me(parent, args, ctx: Context, info) {
-    const id = getUserId(ctx)
-    return ctx.db.query.user({ where: { id } }, info)
-  },
+export default {
+  viewer: () => ({}),
+  tweets: async (parent, args, ctx: Context, info) => {
+    console.log({ info })
+    return ctx.db.query.tweets(
+      {
+        ...args
+      },
+      info
+    )
+  }
 }

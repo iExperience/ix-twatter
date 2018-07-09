@@ -1,0 +1,16 @@
+type User {
+  id: ID! @unique
+  email: String! @unique
+  password: String!
+  name: String!
+  picture: String
+  tweets: [Tweet!]!
+}
+
+type Tweet {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  text: String!
+  author: User!
+}

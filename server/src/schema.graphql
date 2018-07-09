@@ -1,12 +1,22 @@
 # import * from "./generated/prisma.graphql"
 
 type Query {
-  me: User
+  viewer: Viewer
+  tweets(
+    where: TweetWhereInput
+    orderBy: TweetOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Tweet]!
 }
 
 type Mutation {
   signup(email: String!, password: String!, name: String!): AuthPayload!
   login(email: String!, password: String!): AuthPayload!
+  createTweet(data: TweetCreateInput!): Tweet!
 }
 
 type AuthPayload {
@@ -19,4 +29,8 @@ type User {
   email: String!
   name: String!
   tweets: [Tweet!]!
+}
+
+type Viewer {
+  me: User!
 }
