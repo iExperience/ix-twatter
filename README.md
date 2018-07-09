@@ -131,7 +131,7 @@ P.S: Make sure to copy your prisma endpoint that you can find in `prisma/prisma.
 Your .env file should look something like this as a result:
 
 ```sh
-PRISMA_ENDPOINT="https://eu1.prisma.sh/public-grovelantern-494/ix-twatter/dev"
+PRISMA_ENDPOINT="https://eu1.prisma.sh/public-grovelantern-494/ix-tweeter/dev"
 PRISMA_SECRET="mysecret123"
 APP_SECRET="jwtsecret123"
 ```
