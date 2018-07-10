@@ -1,10 +1,12 @@
 import * as React from "react"
 import gql from "graphql-tag"
 import { Query } from "react-apollo"
+import CreateTweetForm from "../create-tweet-form/create-tweet-form"
+import Tweet from "../tweet/tweet"
 
 const GET_TWEETS = gql`
   query {
-    tweets {
+    tweets(orderBy: createdAt_DESC) {
       id
       text
       author {
@@ -36,7 +38,7 @@ class Feed extends React.Component {
     return (
       <div>
         <Query query={GET_TWEETS}>
-          {({ loading, error, data }) => {
+          {({ loading, error, data, refetch }) => {
             if (loading) {
               return "LOading..."
             }
@@ -47,12 +49,15 @@ class Feed extends React.Component {
 
             return (
               <div>
+                <CreateTweetForm refetchFeedTweets={refetch} />
+
                 {data.tweets.map(tweet => {
                   return (
-                    <div>
-                      {tweet.text}
-                      <div className="tweet-author">{tweet.author.name}</div>
-                    </div>
+                    <Tweet
+                      key={this.props.id}
+                      text={tweet.text}
+                      author={tweet.author}
+                    />
                   )
                 })}
               </div>
