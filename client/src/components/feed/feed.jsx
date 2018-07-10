@@ -54,7 +54,7 @@ class Feed extends React.Component {
                 {data.tweets.map(tweet => {
                   return (
                     <Tweet
-                      key={this.props.id}
+                      key={tweet.id}
                       text={tweet.text}
                       author={tweet.author}
                     />

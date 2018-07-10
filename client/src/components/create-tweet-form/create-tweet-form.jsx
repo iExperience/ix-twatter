@@ -21,9 +21,9 @@ class CreateTweetForm extends React.Component {
             return (
               <div>
                 <form
-                  onSubmit={e => {
+                  onSubmit={async e => {
                     e.preventDefault()
-                    createTweet({
+                    await createTweet({
                       variables: {
                         data: {
                           author: {
