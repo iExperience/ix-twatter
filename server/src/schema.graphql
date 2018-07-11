@@ -14,7 +14,7 @@ type Query {
 }
 
 type Mutation {
-  signup(email: String!, password: String!, name: String!): AuthPayload!
+  signup(email: String!, password: String!, name: String!, username: String!): AuthPayload!
   login(email: String!, password: String!): AuthPayload!
   createTweet(data: TweetCreateInput!): Tweet!
 }
@@ -26,6 +26,7 @@ type AuthPayload {
 
 type User {
   id: ID!
+  username: String!
   email: String!
   name: String!
   tweets: [Tweet!]!

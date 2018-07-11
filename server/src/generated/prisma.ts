@@ -433,6 +433,7 @@ input UserCreateInput {
   email: String!
   password: String!
   name: String!
+  username: String!
   picture: String
   tweets: TweetCreateManyWithoutAuthorInput
 }
@@ -1000,6 +1001,7 @@ export interface UserCreateInput {
   email: String
   password: String
   name: String
+  username: String
   picture?: String
   tweets?: TweetCreateManyWithoutAuthorInput
 }
