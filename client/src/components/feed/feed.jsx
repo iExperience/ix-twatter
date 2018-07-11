@@ -6,7 +6,7 @@ import Tweet from "../tweet/tweet"
 
 const GET_TWEETS = gql`
   query {
-    tweets(orderBy: createdAt_DESC) {
+    tweets(orderBy: "createdAt_DESC") {
       id
       text
       author {
