@@ -7,3 +7,4 @@ hooks:
   post-deploy:
     - graphql get-schema -p database
     - graphql prepare
+    - graphql codegen
