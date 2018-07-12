@@ -1,5 +1,4 @@
 import { extractFragmentReplacements } from "prisma-binding"
-import Viewer from "./Viewer"
 import Query from "./Query"
 import { auth } from "./Mutation/auth"
 import tweet from "./Mutation/tweet"
@@ -11,7 +10,6 @@ export const resolvers = {
     ...auth,
     ...tweet
   },
-  Viewer,
   AuthPayload
 }
 

@@ -8,6 +8,7 @@
     "build": "rimraf dist && graphql codegen && tsc"
   },
   "dependencies": {
+    "apollo-link-context": "^1.0.8",
     "bcryptjs": "2.4.3",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",

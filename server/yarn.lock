@@ -244,6 +244,12 @@ apollo-codegen@^0.19.1:
     source-map-support "^0.5.0"
     yargs "^10.0.3"
 
+apollo-link-context@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/apollo-link-context/-/apollo-link-context-1.0.8.tgz#c967a56ac6ed32add748937735bcb57c5cc64c95"
+  dependencies:
+    apollo-link "^1.2.2"
+
 apollo-link-error@1.0.9:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/apollo-link-error/-/apollo-link-error-1.0.9.tgz#83bbe019a3bca7c602c399889b313a7e5e22713f"

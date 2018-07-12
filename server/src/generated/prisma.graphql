@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/harris-robin-kalash/twatter/dev
-# timestamp: Wed Jul 11 2018 16:07:30 GMT+0100 (WEST)
+# timestamp: Thu Jul 12 2018 16:32:27 GMT+0100 (Western European Summer Time)
 
 type AggregateTweet {
   count: Int!
@@ -354,7 +354,7 @@ input TweetWhereUniqueInput {
 type User implements Node {
   id: ID!
   email: String!
-  username: String!
+  username: String
   password: String!
   name: String!
   picture: String
@@ -373,7 +373,7 @@ type UserConnection {
 
 input UserCreateInput {
   email: String!
-  username: String!
+  username: String
   password: String!
   name: String!
   picture: String
@@ -387,7 +387,7 @@ input UserCreateOneWithoutTweetsInput {
 
 input UserCreateWithoutTweetsInput {
   email: String!
-  username: String!
+  username: String
   password: String!
   name: String!
   picture: String
@@ -424,7 +424,7 @@ enum UserOrderByInput {
 type UserPreviousValues {
   id: ID!
   email: String!
-  username: String!
+  username: String
   password: String!
   name: String!
   picture: String

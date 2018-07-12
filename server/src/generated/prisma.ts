@@ -4,38 +4,38 @@ import { Options } from 'graphql-binding'
 import { makePrismaBindingClass, BasePrismaOptions } from 'prisma-binding'
 
 export interface Query {
-    tweets: <T = Tweet[]>(args: { where?: TweetWhereInput, orderBy?: TweetOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     users: <T = User[]>(args: { where?: UserWhereInput, orderBy?: UserOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    tweet: <T = Tweet | null>(args: { where: TweetWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    tweets: <T = Tweet[]>(args: { where?: TweetWhereInput, orderBy?: TweetOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     user: <T = User | null>(args: { where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    tweetsConnection: <T = TweetConnection>(args: { where?: TweetWhereInput, orderBy?: TweetOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    tweet: <T = Tweet | null>(args: { where: TweetWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     usersConnection: <T = UserConnection>(args: { where?: UserWhereInput, orderBy?: UserOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    tweetsConnection: <T = TweetConnection>(args: { where?: TweetWhereInput, orderBy?: TweetOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     node: <T = Node | null>(args: { id: ID_Output }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> 
   }
 
 export interface Mutation {
-    createTweet: <T = Tweet>(args: { data: TweetCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     createUser: <T = User>(args: { data: UserCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateTweet: <T = Tweet | null>(args: { data: TweetUpdateInput, where: TweetWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    createTweet: <T = Tweet>(args: { data: TweetCreateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateUser: <T = User | null>(args: { data: UserUpdateInput, where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    deleteTweet: <T = Tweet | null>(args: { where: TweetWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    updateTweet: <T = Tweet | null>(args: { data: TweetUpdateInput, where: TweetWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     deleteUser: <T = User | null>(args: { where: UserWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    upsertTweet: <T = Tweet>(args: { where: TweetWhereUniqueInput, create: TweetCreateInput, update: TweetUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    deleteTweet: <T = Tweet | null>(args: { where: TweetWhereUniqueInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     upsertUser: <T = User>(args: { where: UserWhereUniqueInput, create: UserCreateInput, update: UserUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    updateManyTweets: <T = BatchPayload>(args: { data: TweetUpdateInput, where?: TweetWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    upsertTweet: <T = Tweet>(args: { where: TweetWhereUniqueInput, create: TweetCreateInput, update: TweetUpdateInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
     updateManyUsers: <T = BatchPayload>(args: { data: UserUpdateInput, where?: UserWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    deleteManyTweets: <T = BatchPayload>(args: { where?: TweetWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
-    deleteManyUsers: <T = BatchPayload>(args: { where?: UserWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> 
+    updateManyTweets: <T = BatchPayload>(args: { data: TweetUpdateInput, where?: TweetWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    deleteManyUsers: <T = BatchPayload>(args: { where?: UserWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,
+    deleteManyTweets: <T = BatchPayload>(args: { where?: TweetWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> 
   }
 
 export interface Subscription {
-    tweet: <T = TweetSubscriptionPayload | null>(args: { where?: TweetSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
-    user: <T = UserSubscriptionPayload | null>(args: { where?: UserSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> 
+    user: <T = UserSubscriptionPayload | null>(args: { where?: UserSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> ,
+    tweet: <T = TweetSubscriptionPayload | null>(args: { where?: TweetSubscriptionWhereInput }, info?: GraphQLResolveInfo | string, options?: Options) => Promise<AsyncIterator<T>> 
   }
 
 export interface Exists {
-  Tweet: (where?: TweetWhereInput) => Promise<boolean>
   User: (where?: UserWhereInput) => Promise<boolean>
+  Tweet: (where?: TweetWhereInput) => Promise<boolean>
 }
 
 export interface Prisma {
@@ -82,18 +82,18 @@ Long can represent values between -(2^63) and 2^63 - 1.
 scalar Long
 
 type Mutation {
-  createTweet(data: TweetCreateInput!): Tweet!
   createUser(data: UserCreateInput!): User!
-  updateTweet(data: TweetUpdateInput!, where: TweetWhereUniqueInput!): Tweet
+  createTweet(data: TweetCreateInput!): Tweet!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  deleteTweet(where: TweetWhereUniqueInput!): Tweet
+  updateTweet(data: TweetUpdateInput!, where: TweetWhereUniqueInput!): Tweet
   deleteUser(where: UserWhereUniqueInput!): User
-  upsertTweet(where: TweetWhereUniqueInput!, create: TweetCreateInput!, update: TweetUpdateInput!): Tweet!
+  deleteTweet(where: TweetWhereUniqueInput!): Tweet
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  updateManyTweets(data: TweetUpdateInput!, where: TweetWhereInput): BatchPayload!
+  upsertTweet(where: TweetWhereUniqueInput!, create: TweetCreateInput!, update: TweetUpdateInput!): Tweet!
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
-  deleteManyTweets(where: TweetWhereInput): BatchPayload!
+  updateManyTweets(data: TweetUpdateInput!, where: TweetWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyTweets(where: TweetWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -124,12 +124,12 @@ type PageInfo {
 }
 
 type Query {
-  tweets(where: TweetWhereInput, orderBy: TweetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tweet]!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  tweet(where: TweetWhereUniqueInput!): Tweet
+  tweets(where: TweetWhereInput, orderBy: TweetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tweet]!
   user(where: UserWhereUniqueInput!): User
-  tweetsConnection(where: TweetWhereInput, orderBy: TweetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TweetConnection!
+  tweet(where: TweetWhereUniqueInput!): Tweet
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  tweetsConnection(where: TweetWhereInput, orderBy: TweetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TweetConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -139,8 +139,8 @@ type Query {
 }
 
 type Subscription {
-  tweet(where: TweetSubscriptionWhereInput): TweetSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  tweet(where: TweetSubscriptionWhereInput): TweetSubscriptionPayload
 }
 
 type Tweet implements Node {
@@ -413,6 +413,7 @@ input TweetWhereUniqueInput {
 type User implements Node {
   id: ID!
   email: String!
+  username: String
   password: String!
   name: String!
   picture: String
@@ -431,9 +432,9 @@ type UserConnection {
 
 input UserCreateInput {
   email: String!
+  username: String
   password: String!
   name: String!
-  username: String!
   picture: String
   tweets: TweetCreateManyWithoutAuthorInput
 }
@@ -445,6 +446,7 @@ input UserCreateOneWithoutTweetsInput {
 
 input UserCreateWithoutTweetsInput {
   email: String!
+  username: String
   password: String!
   name: String!
   picture: String
@@ -464,6 +466,8 @@ enum UserOrderByInput {
   id_DESC
   email_ASC
   email_DESC
+  username_ASC
+  username_DESC
   password_ASC
   password_DESC
   name_ASC
@@ -479,6 +483,7 @@ enum UserOrderByInput {
 type UserPreviousValues {
   id: ID!
   email: String!
+  username: String
   password: String!
   name: String!
   picture: String
@@ -525,6 +530,7 @@ input UserSubscriptionWhereInput {
 
 input UserUpdateInput {
   email: String
+  username: String
   password: String
   name: String
   picture: String
@@ -541,6 +547,7 @@ input UserUpdateOneWithoutTweetsInput {
 
 input UserUpdateWithoutTweetsDataInput {
   email: String
+  username: String
   password: String
   name: String
   picture: String
@@ -640,6 +647,46 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   email_not_ends_with: String
+  username: String
+
+  """All values that are not equal to given value."""
+  username_not: String
+
+  """All values that are contained in given list."""
+  username_in: [String!]
+
+  """All values that are not contained in given list."""
+  username_not_in: [String!]
+
+  """All values less than the given value."""
+  username_lt: String
+
+  """All values less than or equal the given value."""
+  username_lte: String
+
+  """All values greater than the given value."""
+  username_gt: String
+
+  """All values greater than or equal the given value."""
+  username_gte: String
+
+  """All values containing the given string."""
+  username_contains: String
+
+  """All values not containing the given string."""
+  username_not_contains: String
+
+  """All values starting with the given string."""
+  username_starts_with: String
+
+  """All values not starting with the given string."""
+  username_not_starts_with: String
+
+  """All values ending with the given string."""
+  username_ends_with: String
+
+  """All values not ending with the given string."""
+  username_not_ends_with: String
   password: String
 
   """All values that are not equal to given value."""
@@ -768,6 +815,7 @@ input UserWhereInput {
 input UserWhereUniqueInput {
   id: ID
   email: String
+  username: String
 }
 `
 
@@ -777,19 +825,12 @@ export const Prisma = makePrismaBindingClass<BindingConstructor<Prisma>>({typeDe
  * Types
 */
 
-export type TweetOrderByInput =   'id_ASC' |
-  'id_DESC' |
-  'createdAt_ASC' |
-  'createdAt_DESC' |
-  'updatedAt_ASC' |
-  'updatedAt_DESC' |
-  'text_ASC' |
-  'text_DESC'
-
 export type UserOrderByInput =   'id_ASC' |
   'id_DESC' |
   'email_ASC' |
   'email_DESC' |
+  'username_ASC' |
+  'username_DESC' |
   'password_ASC' |
   'password_DESC' |
   'name_ASC' |
@@ -801,13 +842,226 @@ export type UserOrderByInput =   'id_ASC' |
   'createdAt_ASC' |
   'createdAt_DESC'
 
+export type TweetOrderByInput =   'id_ASC' |
+  'id_DESC' |
+  'createdAt_ASC' |
+  'createdAt_DESC' |
+  'updatedAt_ASC' |
+  'updatedAt_DESC' |
+  'text_ASC' |
+  'text_DESC'
+
 export type MutationType =   'CREATED' |
   'UPDATED' |
   'DELETED'
 
+export interface TweetCreateManyWithoutAuthorInput {
+  create?: TweetCreateWithoutAuthorInput[] | TweetCreateWithoutAuthorInput
+  connect?: TweetWhereUniqueInput[] | TweetWhereUniqueInput
+}
+
+export interface UserWhereInput {
+  AND?: UserWhereInput[] | UserWhereInput
+  OR?: UserWhereInput[] | UserWhereInput
+  NOT?: UserWhereInput[] | UserWhereInput
+  id?: ID_Input
+  id_not?: ID_Input
+  id_in?: ID_Input[] | ID_Input
+  id_not_in?: ID_Input[] | ID_Input
+  id_lt?: ID_Input
+  id_lte?: ID_Input
+  id_gt?: ID_Input
+  id_gte?: ID_Input
+  id_contains?: ID_Input
+  id_not_contains?: ID_Input
+  id_starts_with?: ID_Input
+  id_not_starts_with?: ID_Input
+  id_ends_with?: ID_Input
+  id_not_ends_with?: ID_Input
+  email?: String
+  email_not?: String
+  email_in?: String[] | String
+  email_not_in?: String[] | String
+  email_lt?: String
+  email_lte?: String
+  email_gt?: String
+  email_gte?: String
+  email_contains?: String
+  email_not_contains?: String
+  email_starts_with?: String
+  email_not_starts_with?: String
+  email_ends_with?: String
+  email_not_ends_with?: String
+  username?: String
+  username_not?: String
+  username_in?: String[] | String
+  username_not_in?: String[] | String
+  username_lt?: String
+  username_lte?: String
+  username_gt?: String
+  username_gte?: String
+  username_contains?: String
+  username_not_contains?: String
+  username_starts_with?: String
+  username_not_starts_with?: String
+  username_ends_with?: String
+  username_not_ends_with?: String
+  password?: String
+  password_not?: String
+  password_in?: String[] | String
+  password_not_in?: String[] | String
+  password_lt?: String
+  password_lte?: String
+  password_gt?: String
+  password_gte?: String
+  password_contains?: String
+  password_not_contains?: String
+  password_starts_with?: String
+  password_not_starts_with?: String
+  password_ends_with?: String
+  password_not_ends_with?: String
+  name?: String
+  name_not?: String
+  name_in?: String[] | String
+  name_not_in?: String[] | String
+  name_lt?: String
+  name_lte?: String
+  name_gt?: String
+  name_gte?: String
+  name_contains?: String
+  name_not_contains?: String
+  name_starts_with?: String
+  name_not_starts_with?: String
+  name_ends_with?: String
+  name_not_ends_with?: String
+  picture?: String
+  picture_not?: String
+  picture_in?: String[] | String
+  picture_not_in?: String[] | String
+  picture_lt?: String
+  picture_lte?: String
+  picture_gt?: String
+  picture_gte?: String
+  picture_contains?: String
+  picture_not_contains?: String
+  picture_starts_with?: String
+  picture_not_starts_with?: String
+  picture_ends_with?: String
+  picture_not_ends_with?: String
+  tweets_every?: TweetWhereInput
+  tweets_some?: TweetWhereInput
+  tweets_none?: TweetWhereInput
+}
+
+export interface TweetUpdateInput {
+  text?: String
+  author?: UserUpdateOneWithoutTweetsInput
+}
+
+export interface UserCreateWithoutTweetsInput {
+  email: String
+  username?: String
+  password: String
+  name: String
+  picture?: String
+}
+
+export interface TweetUpsertWithWhereUniqueWithoutAuthorInput {
+  where: TweetWhereUniqueInput
+  update: TweetUpdateWithoutAuthorDataInput
+  create: TweetCreateWithoutAuthorInput
+}
+
 export interface UserCreateOneWithoutTweetsInput {
   create?: UserCreateWithoutTweetsInput
   connect?: UserWhereUniqueInput
+}
+
+export interface TweetUpdateWithoutAuthorDataInput {
+  text?: String
+}
+
+export interface UserSubscriptionWhereInput {
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
+  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
+  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: UserWhereInput
+}
+
+export interface TweetUpdateWithWhereUniqueWithoutAuthorInput {
+  where: TweetWhereUniqueInput
+  data: TweetUpdateWithoutAuthorDataInput
+}
+
+export interface TweetWhereUniqueInput {
+  id?: ID_Input
+}
+
+export interface TweetUpdateManyWithoutAuthorInput {
+  create?: TweetCreateWithoutAuthorInput[] | TweetCreateWithoutAuthorInput
+  connect?: TweetWhereUniqueInput[] | TweetWhereUniqueInput
+  disconnect?: TweetWhereUniqueInput[] | TweetWhereUniqueInput
+  delete?: TweetWhereUniqueInput[] | TweetWhereUniqueInput
+  update?: TweetUpdateWithWhereUniqueWithoutAuthorInput[] | TweetUpdateWithWhereUniqueWithoutAuthorInput
+  upsert?: TweetUpsertWithWhereUniqueWithoutAuthorInput[] | TweetUpsertWithWhereUniqueWithoutAuthorInput
+}
+
+export interface UserUpdateWithoutTweetsDataInput {
+  email?: String
+  username?: String
+  password?: String
+  name?: String
+  picture?: String
+}
+
+export interface TweetCreateInput {
+  text: String
+  author: UserCreateOneWithoutTweetsInput
+}
+
+export interface TweetCreateWithoutAuthorInput {
+  text: String
+}
+
+export interface UserUpdateInput {
+  email?: String
+  username?: String
+  password?: String
+  name?: String
+  picture?: String
+  tweets?: TweetUpdateManyWithoutAuthorInput
+}
+
+export interface UserCreateInput {
+  email: String
+  username?: String
+  password: String
+  name: String
+  picture?: String
+  tweets?: TweetCreateManyWithoutAuthorInput
+}
+
+export interface UserUpdateOneWithoutTweetsInput {
+  create?: UserCreateWithoutTweetsInput
+  connect?: UserWhereUniqueInput
+  delete?: Boolean
+  update?: UserUpdateWithoutTweetsDataInput
+  upsert?: UserUpsertWithoutTweetsInput
+}
+
+export interface UserUpsertWithoutTweetsInput {
+  update: UserUpdateWithoutTweetsDataInput
+  create: UserCreateWithoutTweetsInput
+}
+
+export interface UserWhereUniqueInput {
+  id?: ID_Input
+  email?: String
+  username?: String
 }
 
 export interface TweetWhereInput {
@@ -861,107 +1115,6 @@ export interface TweetWhereInput {
   author?: UserWhereInput
 }
 
-export interface TweetCreateManyWithoutAuthorInput {
-  create?: TweetCreateWithoutAuthorInput[] | TweetCreateWithoutAuthorInput
-  connect?: TweetWhereUniqueInput[] | TweetWhereUniqueInput
-}
-
-export interface UserWhereInput {
-  AND?: UserWhereInput[] | UserWhereInput
-  OR?: UserWhereInput[] | UserWhereInput
-  NOT?: UserWhereInput[] | UserWhereInput
-  id?: ID_Input
-  id_not?: ID_Input
-  id_in?: ID_Input[] | ID_Input
-  id_not_in?: ID_Input[] | ID_Input
-  id_lt?: ID_Input
-  id_lte?: ID_Input
-  id_gt?: ID_Input
-  id_gte?: ID_Input
-  id_contains?: ID_Input
-  id_not_contains?: ID_Input
-  id_starts_with?: ID_Input
-  id_not_starts_with?: ID_Input
-  id_ends_with?: ID_Input
-  id_not_ends_with?: ID_Input
-  email?: String
-  email_not?: String
-  email_in?: String[] | String
-  email_not_in?: String[] | String
-  email_lt?: String
-  email_lte?: String
-  email_gt?: String
-  email_gte?: String
-  email_contains?: String
-  email_not_contains?: String
-  email_starts_with?: String
-  email_not_starts_with?: String
-  email_ends_with?: String
-  email_not_ends_with?: String
-  password?: String
-  password_not?: String
-  password_in?: String[] | String
-  password_not_in?: String[] | String
-  password_lt?: String
-  password_lte?: String
-  password_gt?: String
-  password_gte?: String
-  password_contains?: String
-  password_not_contains?: String
-  password_starts_with?: String
-  password_not_starts_with?: String
-  password_ends_with?: String
-  password_not_ends_with?: String
-  name?: String
-  name_not?: String
-  name_in?: String[] | String
-  name_not_in?: String[] | String
-  name_lt?: String
-  name_lte?: String
-  name_gt?: String
-  name_gte?: String
-  name_contains?: String
-  name_not_contains?: String
-  name_starts_with?: String
-  name_not_starts_with?: String
-  name_ends_with?: String
-  name_not_ends_with?: String
-  picture?: String
-  picture_not?: String
-  picture_in?: String[] | String
-  picture_not_in?: String[] | String
-  picture_lt?: String
-  picture_lte?: String
-  picture_gt?: String
-  picture_gte?: String
-  picture_contains?: String
-  picture_not_contains?: String
-  picture_starts_with?: String
-  picture_not_starts_with?: String
-  picture_ends_with?: String
-  picture_not_ends_with?: String
-  tweets_every?: TweetWhereInput
-  tweets_some?: TweetWhereInput
-  tweets_none?: TweetWhereInput
-}
-
-export interface UserUpdateInput {
-  email?: String
-  password?: String
-  name?: String
-  picture?: String
-  tweets?: TweetUpdateManyWithoutAuthorInput
-}
-
-export interface TweetCreateWithoutAuthorInput {
-  text: String
-}
-
-export interface UserUpsertWithoutTweetsInput {
-  update: UserUpdateWithoutTweetsDataInput
-  create: UserCreateWithoutTweetsInput
-}
-
 export interface TweetSubscriptionWhereInput {
   AND?: TweetSubscriptionWhereInput[] | TweetSubscriptionWhereInput
   OR?: TweetSubscriptionWhereInput[] | TweetSubscriptionWhereInput
@@ -973,91 +1126,6 @@ export interface TweetSubscriptionWhereInput {
   node?: TweetWhereInput
 }
 
-export interface UserUpdateWithoutTweetsDataInput {
-  email?: String
-  password?: String
-  name?: String
-  picture?: String
-}
-
-export interface UserWhereUniqueInput {
-  id?: ID_Input
-  email?: String
-}
-
-export interface UserUpdateOneWithoutTweetsInput {
-  create?: UserCreateWithoutTweetsInput
-  connect?: UserWhereUniqueInput
-  delete?: Boolean
-  update?: UserUpdateWithoutTweetsDataInput
-  upsert?: UserUpsertWithoutTweetsInput
-}
-
-export interface TweetUpdateWithoutAuthorDataInput {
-  text?: String
-}
-
-export interface UserCreateInput {
-  email: String
-  password: String
-  name: String
-  username: String
-  picture?: String
-  tweets?: TweetCreateManyWithoutAuthorInput
-}
-
-export interface UserCreateWithoutTweetsInput {
-  email: String
-  password: String
-  name: String
-  picture?: String
-}
-
-export interface TweetUpdateInput {
-  text?: String
-  author?: UserUpdateOneWithoutTweetsInput
-}
-
-export interface TweetCreateInput {
-  text: String
-  author: UserCreateOneWithoutTweetsInput
-}
-
-export interface TweetUpdateWithWhereUniqueWithoutAuthorInput {
-  where: TweetWhereUniqueInput
-  data: TweetUpdateWithoutAuthorDataInput
-}
-
-export interface TweetUpsertWithWhereUniqueWithoutAuthorInput {
-  where: TweetWhereUniqueInput
-  update: TweetUpdateWithoutAuthorDataInput
-  create: TweetCreateWithoutAuthorInput
-}
-
-export interface TweetWhereUniqueInput {
-  id?: ID_Input
-}
-
-export interface UserSubscriptionWhereInput {
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
-  mutation_in?: MutationType[] | MutationType
-  updatedFields_contains?: String
-  updatedFields_contains_every?: String[] | String
-  updatedFields_contains_some?: String[] | String
-  node?: UserWhereInput
-}
-
-export interface TweetUpdateManyWithoutAuthorInput {
-  create?: TweetCreateWithoutAuthorInput[] | TweetCreateWithoutAuthorInput
-  connect?: TweetWhereUniqueInput[] | TweetWhereUniqueInput
-  disconnect?: TweetWhereUniqueInput[] | TweetWhereUniqueInput
-  delete?: TweetWhereUniqueInput[] | TweetWhereUniqueInput
-  update?: TweetUpdateWithWhereUniqueWithoutAuthorInput[] | TweetUpdateWithWhereUniqueWithoutAuthorInput
-  upsert?: TweetUpsertWithWhereUniqueWithoutAuthorInput[] | TweetUpsertWithWhereUniqueWithoutAuthorInput
-}
-
 /*
  * An object with an ID
 
@@ -1066,22 +1134,55 @@ export interface Node {
   id: ID_Output
 }
 
-export interface UserPreviousValues {
+export interface TweetPreviousValues {
   id: ID_Output
-  email: String
-  password: String
-  name: String
-  picture?: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  text: String
+}
+
+export interface TweetSubscriptionPayload {
+  mutation: MutationType
+  node?: Tweet
+  updatedFields?: String[]
+  previousValues?: TweetPreviousValues
+}
+
+export interface UserSubscriptionPayload {
+  mutation: MutationType
+  node?: User
+  updatedFields?: String[]
+  previousValues?: UserPreviousValues
+}
+
+/*
+ * Information about pagination in a connection.
+
+ */
+export interface PageInfo {
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
+  startCursor?: String
+  endCursor?: String
 }
 
 /*
  * A connection to a list of items.
 
  */
-export interface TweetConnection {
+export interface UserConnection {
   pageInfo: PageInfo
-  edges: TweetEdge[]
-  aggregate: AggregateTweet
+  edges: UserEdge[]
+  aggregate: AggregateUser
+}
+
+/*
+ * An edge in a connection.
+
+ */
+export interface TweetEdge {
+  node: Tweet
+  cursor: String
 }
 
 export interface Tweet extends Node {
@@ -1092,26 +1193,37 @@ export interface Tweet extends Node {
   author: User
 }
 
+export interface UserPreviousValues {
+  id: ID_Output
+  email: String
+  username?: String
+  password: String
+  name: String
+  picture?: String
+}
+
 export interface BatchPayload {
   count: Long
 }
 
-export interface AggregateUser {
-  count: Int
-}
-
-export interface TweetSubscriptionPayload {
-  mutation: MutationType
-  node?: Tweet
-  updatedFields?: String[]
-  previousValues?: TweetPreviousValues
-}
-
-export interface TweetPreviousValues {
+export interface User extends Node {
   id: ID_Output
-  createdAt: DateTime
-  updatedAt: DateTime
-  text: String
+  email: String
+  username?: String
+  password: String
+  name: String
+  picture?: String
+  tweets?: Tweet[]
+}
+
+/*
+ * A connection to a list of items.
+
+ */
+export interface TweetConnection {
+  pageInfo: PageInfo
+  edges: TweetEdge[]
+  aggregate: AggregateTweet
 }
 
 export interface AggregateTweet {
@@ -1127,57 +1239,11 @@ export interface UserEdge {
   cursor: String
 }
 
-export interface User extends Node {
-  id: ID_Output
-  email: String
-  password: String
-  name: String
-  picture?: String
-  tweets?: Tweet[]
+export interface AggregateUser {
+  count: Int
 }
 
-/*
- * Information about pagination in a connection.
-
- */
-export interface PageInfo {
-  hasNextPage: Boolean
-  hasPreviousPage: Boolean
-  startCursor?: String
-  endCursor?: String
-}
-
-export interface UserSubscriptionPayload {
-  mutation: MutationType
-  node?: User
-  updatedFields?: String[]
-  previousValues?: UserPreviousValues
-}
-
-/*
- * An edge in a connection.
-
- */
-export interface TweetEdge {
-  node: Tweet
-  cursor: String
-}
-
-/*
- * A connection to a list of items.
-
- */
-export interface UserConnection {
-  pageInfo: PageInfo
-  edges: UserEdge[]
-  aggregate: AggregateUser
-}
-
-/*
-The `Long` scalar type represents non-fractional signed whole numeric values.
-Long can represent values between -(2^63) and 2^63 - 1.
-*/
-export type Long = string
+export type DateTime = Date | string
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
@@ -1196,8 +1262,12 @@ export type ID_Input = string | number
 export type ID_Output = string
 
 /*
+The `Long` scalar type represents non-fractional signed whole numeric values.
+Long can represent values between -(2^63) and 2^63 - 1.
+*/
+export type Long = string
+
+/*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
 */
 export type String = string
-
-export type DateTime = Date | string

@@ -6,7 +6,7 @@ class HomePage extends React.Component {
   render() {
     return (
       <div>
-        <Navigation />
+        <Navigation history={this.props.history} />
         <Feed />
       </div>
     )

@@ -1,4 +1,5 @@
 import * as React from "react"
+import "./tweet.css"
 
 interface Props {
   text: string
@@ -14,7 +15,7 @@ interface User {
 class Tweet extends React.Component<Props> {
   render() {
     return (
-      <div>
+      <div className="tweet">
         {this.props.text}
         <div className="tweet-author">{this.props.author.name}</div>
       </div>

@@ -4,40 +4,31 @@ import { Query } from "react-apollo"
 import Navigation from "../navigation/navigation"
 import Tweet from "../tweet/tweet"
 
-const GET_TWEETS = gql`
-  query getTweets($where: TweetWhereInput) {
-    tweets(orderBy: createdAt_DESC, where: $where) {
-      id
-      text
-      author {
-        id
-        name
-      }
+const GET_MY_PROFILE = gql`
+  query getMyProfile {
+        me {
+            id
+            name
+            email
+            tweets {
+                id
+                text
+            
+            }
+        }
     }
   }
 `
 
-class ProfilePage extends React.Component {
+class MyProfile extends React.Component {
   render() {
-    console.log({
-      username: this.props.match.params
-    })
     return (
       <div>
-        <Navigation history={this.props.history} />
+        <Navigation />
         <div className="profile-page">
           <h1>THIS IS THE PROFILE PAGE {this.props.match.params.username}</h1>
 
-          <Query
-            variables={{
-              where: {
-                author: {
-                  email: this.props.match.params.username
-                }
-              }
-            }}
-            query={GET_TWEETS}
-          >
+          <Query query={GET_MY_PROFILE}>
             {({ loading, error, data, refetch }) => {
               if (loading) {
                 return "LOading..."
@@ -49,7 +40,7 @@ class ProfilePage extends React.Component {
 
               return (
                 <div>
-                  {data.tweets.map(tweet => {
+                  {data.me.tweets.map(tweet => {
                     return (
                       <Tweet
                         key={tweet.id}
@@ -68,4 +59,4 @@ class ProfilePage extends React.Component {
   }
 }
 
-export default ProfilePage
+export default MyProfile

@@ -3,9 +3,15 @@ import gql from "graphql-tag"
 import { Mutation } from "react-apollo"
 
 const CREATE_TWEET = gql`
-  mutation createTweet($data: TweetCreateInput!) {
-    createTweet(data: $data) {
+  mutation createTweet($text: String!) {
+    createTweet(text: $text) {
+      id
       text
+      author {
+        id
+        name
+        email
+      }
     }
   }
 `
@@ -25,14 +31,7 @@ class CreateTweetForm extends React.Component {
                     e.preventDefault()
                     await createTweet({
                       variables: {
-                        data: {
-                          author: {
-                            connect: {
-                              email: "harris@me.com"
-                            }
-                          },
-                          text: input.value
-                        }
+                        text: input.value
                       }
                     })
                     this.props.refetchFeedTweets()
