@@ -13,7 +13,8 @@ const CREATE_TWEET = gql`
 class CreateTweetForm extends React.Component {
   render() {
     let input
-
+    const raw_user = localStorage.getItem("user")
+    const user = JSON.parse(raw_user)
     return (
       <div>
         <Mutation mutation={CREATE_TWEET}>
@@ -28,7 +29,7 @@ class CreateTweetForm extends React.Component {
                         data: {
                           author: {
                             connect: {
-                              email: "harris@me.com"
+                              email: user.email
                             }
                           },
                           text: input.value

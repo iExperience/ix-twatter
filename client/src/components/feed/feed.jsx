@@ -34,8 +34,10 @@ const GET_TWEETS = gql`
 // }
 
 class Feed extends React.Component {
-
   render() {
+    const raw_user = localStorage.getItem("user")
+    const user = raw_user && JSON.stringify(raw_user)
+
     return (
       <div>
         <Query query={GET_TWEETS}>
@@ -50,7 +52,7 @@ class Feed extends React.Component {
 
             return (
               <div>
-                <CreateTweetForm refetchFeedTweets={refetch} />
+                {user && <CreateTweetForm refetchFeedTweets={refetch} />}
 
                 {data.tweets.map(tweet => {
                   return (
